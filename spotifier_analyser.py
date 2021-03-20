@@ -7,8 +7,8 @@ import sys
 import gc
 import os
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="afef0d4f68874f9f96640f62e78efbf1",
-                                               client_secret="cef0b4391d894d05b5b131531e9da522",
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="",
+                                               client_secret="",
                                                redirect_uri="https://localhost/8080",
                                                scope="user-library-read"))
 #playlist_id='' #insert your playlist id
