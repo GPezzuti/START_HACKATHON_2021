@@ -1,0 +1,7 @@
+#playlist {
+  list-style: none;
+}
+
+#playlist li.active {
+  color: #0275d8;
+}
