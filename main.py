@@ -104,9 +104,10 @@ def data():
   print(str(img))
   f = open("token.txt", "r")
   access_token = f.read()
+  os.system(f'python comparator.py {img}')
   return render_template("audioPlayer.html", data=str(access_token))
 
 if __name__ == "__main__":
-    #os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
+    os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
     gc.collect()
     app.run(debug=True, port=PORT)
