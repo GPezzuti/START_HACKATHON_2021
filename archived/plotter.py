@@ -50,4 +50,4 @@ plt.fill(angles,value,alpha=0.3)
 
 plt.xticks(angles[:-1],categories, size=15)
 plt.yticks(color='grey',size=15)
-plt.show()
+plt.savefig(os.path.join('templates','user_stats.png'))
