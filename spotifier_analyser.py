@@ -6,15 +6,19 @@ from spotipy.oauth2 import SpotifyOAuth
 import sys
 import gc
 import os
+from sklearn.preprocessing import MinMaxScaler
+from math import pi
+import io
+import matplotlib.pyplot as plt
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="afef0d4f68874f9f96640f62e78efbf1",
-                                               client_secret="cef0b4391d894d05b5b131531e9da522",
-                                               redirect_uri="https://localhost/5000",
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=sys.argv[1],
+                                               client_secret=sys.argv[2],
+                                               redirect_uri=sys.argv[3],
                                                scope="user-library-read"))
 #playlist_id='' #insert your playlist id
 
 for i in range (0,5):
-    results = sp.current_user_saved_tracks(limit=50, offset = int(i*50))
+    results = sp.current_user_saved_tracks()
 
     ids=[]
 
@@ -76,11 +80,6 @@ df_dataset = pd.read_csv('test.csv', names = ['id','album','name','artist','expl
 df_dataset.to_csv('dataset.csv', index = False)
 print('finished!')
 
-from sklearn.preprocessing import MinMaxScaler
-from math import pi
-import pandas as pd
-import io
-import os
 
 #BPM range is 0 to 200 bpm, converting to percentage
 df_dataset = pd.read_csv('dataset.csv')
@@ -98,8 +97,6 @@ print(df_dataset.head())
 music_feature = df_dataset[['danceability','energy','loudness','speechiness','acousticness','instrumentalness','liveness','valence','tempo','duration_ms']]
 min_max_scaler = MinMaxScaler()
 music_feature.loc[:]=min_max_scaler.fit_transform(music_feature.loc[:])
-
-import matplotlib.pyplot as plt
 
 # plot size
 fig=plt.figure(figsize=(12,8))

@@ -89,14 +89,17 @@ def callback():
 
     # Combine profile and playlist data to display
     display_arr = [profile_data] + playlist_data["items"]
-    return render_template("index.html", sorted_array=display_arr)
+    sorted_array=display_arr
+    
+    return render_template("index.html")
 
 @app.route('/catalog')
-def mylink():
-    return 'Click.'
+def catalog():
+    #os.system(f'python3 spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
+    return render_template("catalog.html")
 
 
 if __name__ == "__main__":
-    os.system('python spotifier_analyser.py')
+    os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
     gc.collect()
     app.run(debug=True, port=PORT)

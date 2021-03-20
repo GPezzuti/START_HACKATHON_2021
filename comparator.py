@@ -7,6 +7,9 @@ from math import pi
 import numpy as np
 
 #Add the car name here
+def car_name():
+    pass
+
 car_name = "cls"
 
 df_dataset = pd.read_csv('dataset.csv')
