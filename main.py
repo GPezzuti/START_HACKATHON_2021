@@ -94,8 +94,8 @@ def callback():
 
 @app.route("/audioPlayer")
 def data():
+  print(request.headers)
   img = request.args.get('name')
-  print(img)
   return render_template("audioPlayer.html", data="need to get the token check it")
 
 if __name__ == "__main__":

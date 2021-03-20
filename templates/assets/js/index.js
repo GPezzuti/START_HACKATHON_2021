@@ -52,6 +52,7 @@ const tracksOfAlbum = [];
 let currentAlbumIdx = 0;
 let currentTrack;
 let currentTrackUrl;
+let errorCounter = 0;
 
 const song = document.querySelector("#song");
 const songSource = document.querySelector("#song-source");
@@ -112,8 +113,11 @@ function init() {
       getTrack()
     })
     .catch(err => {
+      errorCounter++;
       currentAlbumIdx = 0;
-      init();
+      if (errorCounter < 5) {
+        init();
+      }
     })
 }
 
