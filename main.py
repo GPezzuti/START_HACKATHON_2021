@@ -103,7 +103,7 @@ def data():
   img = request.args.get('name')
   print(str(img))
   f = open("token.txt", "r")
-  access_token = f
+  access_token = f.read()
   return render_template("audioPlayer.html", data=str(access_token))
 
 if __name__ == "__main__":
