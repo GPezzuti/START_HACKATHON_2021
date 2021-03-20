@@ -13,6 +13,7 @@ import sys
 import gc
 import os
 import gc
+from flask import send_file
 
 app = Flask(__name__, static_folder='templates/assets')
 
@@ -106,6 +107,14 @@ def data():
   access_token = f.read()
   os.system(f'python comparator.py {img}')
   return render_template("audioPlayer.html", data=str(access_token))
+
+  
+@app.route("/getPlotCSV")
+def getPlotCSV():
+    return send_file('playlist.csv',
+                     mimetype='text/csv',
+                     attachment_filename='playlist.csv',
+                     as_attachment=True)
 
 if __name__ == "__main__":
     os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
