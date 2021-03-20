@@ -7,7 +7,6 @@ let config = {
 }
 
 const token = document.querySelector("#token").value;
-console.log(token)
 config.headers["Authorization"] = `Bearer ${token}`;
 
 function csvJSON(csv){
@@ -46,8 +45,8 @@ const stringData = `id,album,name,artist,explicit,popularity,danceability,energy
 41jZtFqmBlC0maxnobrQtv,0canh94jv3jOqOh7n8L1z2,I Don't Need A Reason,Dizzee Rascal,True,43,0.363408615965336,0.15715881339217708,1,18.338225288756107,1,0.03965780190337401,0.5463679232715689,0.21195076898323603,0.0007735815524359951,0.10919002427972102,72.59718937775557,audio_features,spotify:track:41jZtFqmBlC0maxnobrQtv,https://api.spotify.com/v1/tracks/41jZtFqmBlC0maxnobrQtv,https://api.spotify.com/v1/audio-analysis/41jZtFqmBlC0maxnobrQtv,0.109817921527394,4
 2nUy0ifVE7UwtOK4rugFsP,6NrMjaGIZAKZLMzVnkNY4V,The End of Heartache,Killswitch Engage,False,62,0.26840861596533605,0.08684118660782292,0,19.308225288756105,0,0.08734219809662598,0.6045809232715689,0.0050492310167639665,0.00037358155243599755,0.17780997572027898,26.648189377755585,audio_features,spotify:track:2nUy0ifVE7UwtOK4rugFsP,https://api.spotify.com/v1/tracks/2nUy0ifVE7UwtOK4rugFsP,https://api.spotify.com/v1/audio-analysis/2nUy0ifVE7UwtOK4rugFsP,1.5639654118059396,4
 `;
+
 let parsedCsv = JSON.parse(csvJSON(stringData));
-console.log(parsedCsv)
 let albumAndTrackIds = parsedCsv.map(sD => (sD.album && sD.id 
   ? { albumId: sD.album, trackId: sD.id, album: sD.name } 
   : false))

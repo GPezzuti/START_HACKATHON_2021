@@ -1,7 +1,27 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 #playlist {
   list-style: none;
 }
 
 #playlist li.active {
   color: #0275d8;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#song {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+h1.title {
+  margin-bottom: 1rem;
 }
