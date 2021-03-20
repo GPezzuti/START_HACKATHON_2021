@@ -14,11 +14,11 @@ import gc
 import os
 import gc
 
-app = Flask(__name__, static_folder='templates/assets') #Need to set path to assets directory otherwise never loads
+app = Flask(__name__, static_folder='C:/Users/GerardoPezzuti/Downloads/START_HACK-main/START_HACK-main/templates/assets')
 
 #  Client Keys
-CLIENT_ID = "b1f8b6c7b49a486dbea64514f6e57b08"
-CLIENT_SECRET = "c593ad2f7e9c46bbbfbf658e04ae0d20"
+CLIENT_ID = "2af374b1a4134939bec55e23d97eb547"
+CLIENT_SECRET = "d124cb0521b344ff9faec314bbacdafb"
 
 # Spotify URLS
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
@@ -92,11 +92,7 @@ def callback():
     
     return render_template("catalog.html")
 
-@app.route("/audioPlayer.html")
-def audioPlayer():
-   return render_template("audioPlayer.html")
-
 if __name__ == "__main__":
-    os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
+    #os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
     gc.collect()
     app.run(debug=True, port=PORT)
