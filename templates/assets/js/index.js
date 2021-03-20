@@ -33,6 +33,8 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
     li.textContent = sD.album;
     playlist.appendChild(li);
   })
+
+  console.log(albumAndTrackIds)
   
   function getAlbum() {
     return fetch(`https://api.spotify.com/v1/albums/${albumAndTrackIds[currentAlbumIdx].albumId}`, {
