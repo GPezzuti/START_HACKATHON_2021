@@ -7,8 +7,8 @@ from math import pi
 import numpy as np
 import sys
 
-car_name = str(sys.argv[1])
-#car_name = 'c_class'
+#car_name = str(sys.argv[1])
+car_name = 'c_class'
 df_dataset = pd.read_csv('dataset.csv')
 
 df_car = pd.read_csv('cars_random_f.csv')
