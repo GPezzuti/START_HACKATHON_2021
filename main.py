@@ -92,6 +92,12 @@ def callback():
     
     return render_template("catalog.html")
 
+@app.route("/audioPlayer")
+def data():
+  img = request.args.get('name')
+  print(img)
+  return render_template("audioPlayer.html")
+
 if __name__ == "__main__":
     #os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
     gc.collect()
