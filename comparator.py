@@ -27,7 +27,7 @@ df_dataset['valence']=abs(df_dataset['valence']-df_car.iloc[0,8])
 df_dataset['tempo']=abs(df_dataset['tempo']-df_car.iloc[0,9])
 df_dataset['duration_ms']=abs(df_dataset['duration_ms']-df_car.iloc[0,10])
 
-df_dataset=df_dataset.loc[(df_dataset['danceability']<=0.01) | (df_dataset['energy']<=0.01) | (df_dataset['loudness']<=0.01) | (df_dataset['speechiness']<=0.01) | (df_dataset['acousticness']<=0.01) | (df_dataset['instrumentalness']<=0.01) | (df_dataset['liveness']<=0.01) | (df_dataset['valence']<=0.01) | (df_dataset['tempo']<=0.01) | (df_car['duration_ms']<=0.01)]
+df_dataset=df_dataset.loc[(df_dataset['danceability']<=0.1) | (df_dataset['energy']<=0.1) | (df_dataset['loudness']<=0.1) | (df_dataset['speechiness']<=0.1) | (df_dataset['acousticness']<=0.1) | (df_dataset['instrumentalness']<=0.1) | (df_dataset['liveness']<=0.1) | (df_dataset['valence']<=0.1) | (df_dataset['tempo']<=0.1) | (df_car['duration_ms']<=0.1)]
 
 #Finding similarity feature between car and human
 values = [df_dataset['danceability'].mean(),df_dataset['energy'].mean(), df_dataset['loudness'].mean(), df_dataset['speechiness'].mean(), df_dataset['acousticness'].mean(),
@@ -41,5 +41,6 @@ similarity = values.index(min(values))
 #df_dataset = df_dataset.drop(df_dataset.columns[0], axis=1)
 print(df_dataset.head())
 
+df_dataset.drop_duplicates(subset=["id"], inplace=True)
 df_dataset.to_csv('playlist.csv', index = False)
 print('The thing that is most similar feature for you is: '+str(similarity)) #0-9 (features as mentioned before)

@@ -20,7 +20,7 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   csv = res;
 
   let parsedCsv = JSON.parse(csvJSON(csv));
-  console.log(parsedCsv)
+  
   let albumAndTrackIds = parsedCsv.map(sD => (sD.album && sD.id 
     ? { albumId: sD.album, trackId: sD.id, album: sD.name, artist: sD.artist } 
     : false))
@@ -49,7 +49,6 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   }
   
   function getTrack() {
-    console.log(albumAndTrackIds)
     currentTrack = tracksOfAlbum.find(t => t.id === albumAndTrackIds[currentAlbumIdx].trackId)
     currentTrackUrl = currentTrack.preview_url;
     if (currentTrackUrl) {
