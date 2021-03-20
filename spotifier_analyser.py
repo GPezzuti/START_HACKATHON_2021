@@ -33,7 +33,7 @@ for i in range (0,5):
         song_meta['id'].append(song_id)
 
         # album name
-        album=meta['album']['name']
+        album=meta['album']['id']
         song_meta['album']+=[album]
 
         # song name
@@ -73,6 +73,6 @@ for i in range (0,5):
 
 # column names: id,album,name,artist,explicit,popularity,danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,uri,track_href,analysis_url,duration_ms,time_signature
 df_dataset = pd.read_csv('test.csv', names = ['id','album','name','artist','explicit','popularity','danceability','energy','key','loudness','mode','speechiness','acousticness','instrumentalness','liveness','valence','tempo','type','uri','track_href','analysis_url','duration_ms','time_signature'])
-df_dataset.to_csv('dataset.csv')
+df_dataset.to_csv('dataset.csv', index = False)
 print('finished!')
 os.remove('test.csv')
