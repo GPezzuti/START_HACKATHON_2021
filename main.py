@@ -14,7 +14,7 @@ import gc
 import os
 import gc
 
-app = Flask(__name__, static_folder='C:/Users/GerardoPezzuti/Downloads/START_HACK-main/START_HACK-main/templates/assets')
+app = Flask(__name__, static_folder='templates/assets')
 
 #  Client Keys
 CLIENT_ID = "2af374b1a4134939bec55e23d97eb547"
