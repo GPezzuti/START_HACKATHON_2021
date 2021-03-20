@@ -6,6 +6,10 @@ let config = {
   }
 }
 
+const token = document.querySelector("#token").value;
+console.log(token)
+config.headers["Authorization"] = `Bearer ${token}`;
+
 function csvJSON(csv){
 
   var lines=csv.split("\n");
