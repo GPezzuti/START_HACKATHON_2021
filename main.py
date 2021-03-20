@@ -69,6 +69,11 @@ def callback():
     # Auth Step 5: Tokens are Returned to Application
     response_data = json.loads(post_request.text)
     access_token = response_data["access_token"]
+
+    f = open("token.txt", "w")
+    f.write(str(access_token))
+    f.close()
+
     refresh_token = response_data["refresh_token"]
     token_type = response_data["token_type"]
     expires_in = response_data["expires_in"]
@@ -95,8 +100,10 @@ def callback():
 @app.route("/audioPlayer")
 def data():
   img = request.args.get('name')
-  print(img)
-  return render_template("audioPlayer.html", data="need to get the token check it")
+  print(str(img))
+  f = open("token.txt", "r")
+  access_token = f
+  return render_template("audioPlayer.html", data=str(access_token))
 
 if __name__ == "__main__":
     #os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
