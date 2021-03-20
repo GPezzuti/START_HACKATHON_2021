@@ -14,11 +14,11 @@ import gc
 import os
 import gc
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='C:\\Users\\shrey\\Downloads\\start_hack\\templates\\assets\\img')
 
 #  Client Keys
-CLIENT_ID = "2af374b1a4134939bec55e23d97eb547"
-CLIENT_SECRET = "d124cb0521b344ff9faec314bbacdafb"
+CLIENT_ID = "afef0d4f68874f9f96640f62e78efbf1"
+CLIENT_SECRET = "cef0b4391d894d05b5b131531e9da522"
 
 # Spotify URLS
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
@@ -30,7 +30,7 @@ SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
 # Server-side Parameters
 CLIENT_SIDE_URL = "http://localhost"
 PORT = 5000
-REDIRECT_URI = "{}:{}/callback/q".format(CLIENT_SIDE_URL, PORT)
+REDIRECT_URI = "{}:{}/callback".format(CLIENT_SIDE_URL, PORT)
 SCOPE = "user-library-read"
 STATE = ""
 SHOW_DIALOG_bool = True
@@ -53,8 +53,7 @@ def index():
     auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
     return redirect(auth_url)
 
-
-@app.route("/callback/q")
+@app.route("/callback")
 def callback():
     # Auth Step 4: Requests refresh and access tokens
     auth_token = request.args['code']
@@ -91,13 +90,7 @@ def callback():
     display_arr = [profile_data] + playlist_data["items"]
     sorted_array=display_arr
     
-    return render_template("index.html")
-
-@app.route('/catalog')
-def catalog():
-    #os.system(f'python3 spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
     return render_template("catalog.html")
-
 
 if __name__ == "__main__":
     os.system(f'python spotifier_analyser.py {CLIENT_ID} {CLIENT_SECRET} {REDIRECT_URI}')
