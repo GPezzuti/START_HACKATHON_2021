@@ -100,14 +100,17 @@ def callback():
 
 @app.route("/audioPlayer")
 def data():
-  print(request.headers)
-  img = request.args.get('name')
-  print(str(img))
-  f = open("token.txt", "r")
-  access_token = f.read()
-  os.system(f'python comparator.py {img}')
-  return render_template("audioPlayer.html", data=str(access_token))
+    print(request.headers)
+    img = request.args.get('name')
+    print(str(img))
+    f = open("token.txt", "r")
+    access_token = f.read()
+    os.system(f'python comparator.py {img}')
+    return render_template("audioPlayer.html", data=str(access_token))
 
+#@app.route("/callback/catalog")
+#def catalog():
+#    return render_template("catalog.html")
   
 @app.route("/getPlotCSV")
 def getPlotCSV():
