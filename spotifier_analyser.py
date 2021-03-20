@@ -125,6 +125,6 @@ plt.fill(angles,value,alpha=0.3)
 
 plt.xticks(angles[:-1],categories, size=15)
 plt.yticks(color='grey',size=15)
-plt.savefig(os.path.join('templates','user_stats.png'))
+plt.savefig(os.path.join('templates\\assets','user_stats.png'))
 
 os.remove('test.csv')

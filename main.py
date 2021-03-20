@@ -14,7 +14,7 @@ import gc
 import os
 import gc
 
-app = Flask(__name__, static_folder='C:\\Users\\shrey\\Downloads\\start_hack\\templates\\assets\\img')
+app = Flask(__name__, static_folder='C:\\Users\\shrey\\Downloads\\start_hack\\templates\\assets') #Need to set path to assets directory otherwise never loads
 
 #  Client Keys
 CLIENT_ID = "afef0d4f68874f9f96640f62e78efbf1"
