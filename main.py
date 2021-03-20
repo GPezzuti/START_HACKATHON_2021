@@ -96,7 +96,7 @@ def callback():
     display_arr = [profile_data] + playlist_data["items"]
     sorted_array=display_arr
     
-    return render_template("catalog.html")
+    return render_template("index.html")
 
 @app.route("/audioPlayer")
 def data():
@@ -108,9 +108,9 @@ def data():
     os.system(f'python comparator.py {img}')
     return render_template("audioPlayer.html", data=str(access_token))
 
-#@app.route("/callback/catalog")
-#def catalog():
-#    return render_template("catalog.html")
+@app.route("/catalog")
+def catalog():
+    return render_template("catalog.html")
   
 @app.route("/getPlotCSV")
 def getPlotCSV():
