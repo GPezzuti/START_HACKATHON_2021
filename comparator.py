@@ -5,12 +5,9 @@ from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 from math import pi
 import numpy as np
+import sys
 
-#Add the car name here
-def car_name():
-    pass
-
-car_name = "cls"
+car_name = str(sys.argv[1])
 
 df_dataset = pd.read_csv('dataset.csv')
 
