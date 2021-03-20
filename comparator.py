@@ -41,5 +41,7 @@ similarity = values.index(min(values))
 #        df_dataset['instrumentalness'].mean(), df_dataset['liveness'].mean(), df_dataset['valence'].mean(), df_dataset['tempo'].mean(), df_dataset['duration_ms'].mean())
 
 #The result custom playlist and most similar feature from algo
-df_dataset.to_csv('playlist.csv')
+df_dataset = df_dataset.drop(df_dataset.columns[0], axis=1)
+
+df_dataset.to_csv('playlist.csv', index = False)
 print('The thing that is most similar feature for you is: '+str(similarity)) #0-9 (features as mentioned before)

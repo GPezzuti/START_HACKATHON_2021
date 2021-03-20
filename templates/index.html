@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ </head>
+ <body>
+   <input type="button" id='script' name="scriptbutton" value=" Run Script " onclick="goPython()">
+
+   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+   <script>
+       function goPython(){
+           $.ajax({
+             type: 'POST',
+             url: "/spotify_analyser.py",
+             //or some other path like /scripts/test.py
+             dataType: "text",
+             success: function (data) {
+               alert(data)
+             },
+             error: function (data) {
+               alert(data)
+             }
+           });
+       }
+   </script>
+ </body>
+</html>
