@@ -7,8 +7,8 @@ from math import pi
 import numpy as np
 import sys
 
-car_name = str(sys.argv[1])
-#car_name = 'c_class'
+#car_name = str(sys.argv[1])
+car_name = 'c_class'
 df_dataset = pd.read_csv('dataset.csv')
 
 df_car = pd.read_csv('cars_random_f.csv')
@@ -41,5 +41,6 @@ similarity = values.index(min(values))
 #df_dataset = df_dataset.drop(df_dataset.columns[0], axis=1)
 print(df_dataset.head())
 
+df_dataset.drop_duplicates(subset=["id"], inplace=True)
 df_dataset.to_csv('playlist.csv', index = False)
 print('The thing that is most similar feature for you is: '+str(similarity)) #0-9 (features as mentioned before)
