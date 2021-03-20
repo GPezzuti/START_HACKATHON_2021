@@ -10,15 +10,23 @@ const token = document.querySelector("#token").value;
 config.headers["Authorization"] = `Bearer ${token}`;
 let csv;
 
+const urlParams = new URLSearchParams(window.location.search);
+const carName = urlParams.get('name');
+
+const main = document.querySelector("#main");
+main.style.background = `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('assets/img/${carName}.jpg') no-repeat 50% 50%`;
+
 fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   csv = res;
 
   let parsedCsv = JSON.parse(csvJSON(csv));
+  console.log(parsedCsv)
   let albumAndTrackIds = parsedCsv.map(sD => (sD.album && sD.id 
-    ? { albumId: sD.album, trackId: sD.id, album: sD.name } 
+    ? { albumId: sD.album, trackId: sD.id, album: sD.name, artist: sD.artist } 
     : false))
   albumAndTrackIds = albumAndTrackIds.filter(Boolean);
-  const tracksOfAlbum = [];
+  let tracksOfAlbum = [];
+  let imagesOfAlbum = [];
   let currentAlbumIdx = 0;
   let currentTrack;
   let currentTrackUrl;
@@ -30,11 +38,9 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   
   albumAndTrackIds.forEach(sD => {
     const li = document.createElement('li');
-    li.textContent = sD.album;
+    li.textContent = sD.artist;
     playlist.appendChild(li);
   })
-
-  console.log(albumAndTrackIds)
   
   function getAlbum() {
     return fetch(`https://api.spotify.com/v1/albums/${albumAndTrackIds[currentAlbumIdx].albumId}`, {
@@ -43,6 +49,7 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   }
   
   function getTrack() {
+    console.log(albumAndTrackIds)
     currentTrack = tracksOfAlbum.find(t => t.id === albumAndTrackIds[currentAlbumIdx].trackId)
     currentTrackUrl = currentTrack.preview_url;
     if (currentTrackUrl) {
@@ -51,12 +58,15 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
       song.load();
       song.play();
     } else {
-      alert('No demo for this track')
-      currentAlbumIdx++;
-      if (currentAlbumIdx === albumAndTrackIds.length) {
-        currentAlbumIdx = 0;
+      if (errorCounter < albumAndTrackIds.length) {
+        alert('No demo for this track')
+        errorCounter++;
+        currentAlbumIdx++;
+        if (currentAlbumIdx === albumAndTrackIds.length) {
+          currentAlbumIdx = 0;
+        }
+        init();
       }
-      init();
     }
   }
   
@@ -75,7 +85,9 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
     getAlbum()
       .then(res => res.json())
       .then(res => {
-        tracksOfAlbum.push(...res.tracks.items) 
+        imagesOfAlbum = res.images
+        setImages();
+        tracksOfAlbum = res.tracks.items
         if (!hasTracks) {
           hasTracks = true;
           playlist.childNodes.forEach((node, i) => {
@@ -94,6 +106,13 @@ fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
   }
   
   init();
+
+  function setImages() {
+    const img = document.querySelector("#song-image");
+    img.src = imagesOfAlbum[0].url;
+    img.style.height = imagesOfAlbum[0].height + "px";
+    img.style.width = imagesOfAlbum[0].width + "px";
+  }
 })
 
 function csvJSON(csv){
