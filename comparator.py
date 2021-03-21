@@ -44,5 +44,4 @@ print(df_dataset.head())
 df_dataset.drop_duplicates(subset=["id"], inplace=True)
 if os.path.exists("playlist.csv"):
   os.remove('playlist.csv') 
-df_dataset.to_csv('playlist.csv', index = False)
 print('The thing that is most similar feature for you is: '+str(similarity)) #0-9 (features as mentioned before)
