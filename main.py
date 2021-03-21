@@ -114,6 +114,8 @@ def catalog():
   
 @app.route("/getPlotCSV")
 def getPlotCSV():
+    img = request.args.get('name')
+    os.system(f'python comparator.py {img}')
     return send_file('playlist.csv',
                      mimetype='text/csv',
                      attachment_filename='playlist.csv',

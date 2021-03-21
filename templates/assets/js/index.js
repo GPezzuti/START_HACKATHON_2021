@@ -16,7 +16,7 @@ const carName = urlParams.get('name');
 const main = document.querySelector("#main");
 main.style.background = `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('assets/img/${carName}.jpg') no-repeat 50% 50%`;
 
-fetch("http://localhost:5000/getPlotCSV").then(res => res.text()).then(res => {
+fetch(`http://localhost:5000/getPlotCSV?name=${carName}`).then(res => res.text()).then(res => {
   csv = res;
 
   let parsedCsv = JSON.parse(csvJSON(csv));
